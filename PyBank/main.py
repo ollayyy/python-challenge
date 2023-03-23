@@ -28,3 +28,18 @@ print('-------------------')
 print('TotalMonths: ', total_months)
 print('Total: ', profit_total)
 
+profit_sum = 0
+profit_average = 0
+
+with open(budget_csv, newline='') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    csv_header = next(csvreader)
+
+    for row in csvreader:
+
+        profit_sum += int(row[1])
+profit_average =  profit_sum / total_months
+
+print(profit_average)
+
