@@ -28,8 +28,9 @@ print('-------------------')
 print('TotalMonths: ', total_months)
 print('Total: ', profit_total)
 
-profit_sum = 0
-profit_average = 0
+monthly_change = []
+month_count = []
+previous_change = 0
 
 with open(budget_csv, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -38,8 +39,12 @@ with open(budget_csv, newline='') as csvfile:
 
     for row in csvreader:
 
-        profit_sum += int(row[1])
-profit_average =  profit_sum / total_months
+        if total_months > 1:
+            monthly_change.append(int(row[1]) - previous_change)
+            month_count.append(row[0])
 
-print(profit_average)
+        previous_change = int(row[1])
 
+average_change = sum(monthly_change) / len(monthly_change)
+
+print(average_change)
