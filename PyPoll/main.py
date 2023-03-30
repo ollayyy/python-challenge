@@ -53,3 +53,18 @@ for candidate, votes in candidates.items():
 
 print('Winner:', winner)
 print('-------------------------')
+
+
+file = open('Analysis/PyPoll_Results.txt', 'w')
+
+file.write('Election Results\n')
+file.write('------------------------------\n')
+file.write('Total Votes:' +  str(total_votes) + '\n')
+file.write('------------------------------\n')
+for candidate, votes in candidates.items():
+    votes_percentage = round((votes/total_votes)* 100, 3)
+
+    file.write(f'{candidate}' + '\n')
+    file.write(f'{votes} votes | {votes_percentage}%' + '\n')
+    file.write('-------------------------------' + '\n')
+file.write('Winner: ' + str(winner))
